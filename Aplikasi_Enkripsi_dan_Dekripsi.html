@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enkripsi dan Dekripsi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enkripsi dan Dekripsi</h1>
+        <textarea id="inputText" placeholder="Masukkan teks di sini"></textarea><br>
+        <button onclick="processText('encrypt')">Enkripsi</button>
+        <button onclick="processText('decrypt')">Dekripsi</button>
+        <div class="result">
+            <h3>Hasil:</h3>
+            <p id="outputText"></p>
+        </div>
+    </div>
+
+    <script>
+        function encrypt(text) {
+            let result = "";
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                if (/[a-zA-Z]/.test(char)) {
+                    let upper = char.toUpperCase();
+                    let newChar = String.fromCharCode('Z'.charCodeAt(0) - (upper.charCodeAt(0) - 'A'.charCodeAt(0)));
+                    result += char === char.toUpperCase() ? newChar : newChar.toLowerCase();
+                } else {
+                    result += char;
+                }
+            }
+            return result;
+        }
+
+        function decrypt(text) {
+            return encrypt(text); // Enkripsi dan dekripsi adalah proses yang sama
+        }
+
+        function processText(action) {
+            const inputText = document.getElementById('inputText').value;
+            let resultText = "";
+            if (action === 'encrypt') {
+                resultText = encrypt(inputText);
+            } else if (action === 'decrypt') {
+                resultText = decrypt(inputText);
+            }
+            document.getElementById('outputText').innerText = resultText;
+        }
+    </script>
+</body>
+</html>

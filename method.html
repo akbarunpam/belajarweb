@@ -1,0 +1,19 @@
+<form action="/search" method="GET">
+    <input type="text" name="keyword" placeholder="Cari...">
+    <button type="submit">Search</button>
+</form>
+
+<form action="/login" method="POST">
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit">Login</button>
+</form>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+
+application/x-www-form-urlencoded: Default (untuk teks biasa).
+multipart/form-data: Diperlukan jika mengupload file.
+text/plain: Hanya untuk debugging (jarang digunakan).

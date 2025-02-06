@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Umur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Umur</h1>
+        <table>
+            <tr>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Umur</th>
+                <th>Hari Menuju Ulang Tahun</th>
+            </tr>
+            <tr>
+                <td>Abah</td>
+                <td>05 Juli 1964</td>
+                <td id="abah"></td>
+                <td id="ulangAbah"></td>
+            </tr>
+            <tr>
+                <td>Mamah</td>
+                <td>18 Mei 1975</td>
+                <td id="mamah"></td>
+                <td id="ulangMamah"></td>
+            </tr>
+            <tr>
+                <td>Akbar</td>
+                <td>19 Desember 2000</td>
+                <td id="akbar"></td>
+                <td id="ulangAkbar"></td>
+            </tr>
+            <tr>
+                <td>Lintang</td>
+                <td>21 April 2007</td>
+                <td id="lintang"></td>
+                <td id="ulangLintang"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        function hitungUmur(tanggalLahir) {
+            let today = new Date();
+            let birthDate = new Date(tanggalLahir);
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+            
+            if (days < 0) {
+                months -= 1;
+                let lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
+            return `${years} tahun, ${months} bulan, ${days} hari`;
+        }
+        
+        function hitungHariUlangTahun(tanggalLahir) {
+            let today = new Date();
+            let birthDate = new Date(tanggalLahir);
+            let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday < today) {
+                nextBirthday.setFullYear(today.getFullYear() + 1);
+            }
+            let diffTime = nextBirthday - today;
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return `${diffDays} hari`;
+        }
+        
+        document.getElementById("abah").textContent = hitungUmur("1964-07-05");
+        document.getElementById("mamah").textContent = hitungUmur("1975-05-18");
+        document.getElementById("akbar").textContent = hitungUmur("2000-12-19");
+        document.getElementById("lintang").textContent = hitungUmur("2007-04-21");
+
+        document.getElementById("ulangAbah").textContent = hitungHariUlangTahun("1964-07-05");
+        document.getElementById("ulangMamah").textContent = hitungHariUlangTahun("1975-05-18");
+        document.getElementById("ulangAkbar").textContent = hitungHariUlangTahun("2000-12-19");
+        document.getElementById("ulangLintang").textContent = hitungHariUlangTahun("2007-04-21");
+    </script>
+</body>
+</html>

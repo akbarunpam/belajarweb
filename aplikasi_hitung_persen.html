@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter Angka ke Persen</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Konverter Angka ke Persen</h1>
+        <input type="number" id="numberInput" placeholder="Masukkan nilai angka">
+        <button onclick="convertToPercent()">Konversi ke Persen</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function convertToPercent() {
+            let number = document.getElementById('numberInput').value;
+            if (number === "") {
+                alert("Masukkan nilai angka.");
+                return;
+            }
+            let percent = Number(number) * 100;
+            percent = percent.toFixed(2) + "%";
+            document.getElementById('result').innerText = "Hasil: " + percent;
+        }
+    </script>
+</body>
+</html>
