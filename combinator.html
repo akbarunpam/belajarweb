@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div ~ p {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Ini adalah div.</div>
+    <p>Ini paragraf sibling pertama setelah div. Akan bergaris bawah.</p>
+    <section>
+      <p>
+        Paragraf ini di dalam section, bukan sibling langsung. Tidak akan
+        bergaris bawah.
+      </p>
+    </section>
+    <p>Ini paragraf sibling kedua setelah div. Juga akan bergaris bawah.</p>
+    <ul>
+      <li>Item list</li>
+      <p>
+        Paragraf ini di dalam ul, bukan sibling langsung. Tidak akan bergaris
+        bawah.
+      </p>
+    </ul>
+    <p>Ini paragraf sibling ketiga setelah div. Juga akan bergaris bawah.</p>
+  </body>
+</html>
